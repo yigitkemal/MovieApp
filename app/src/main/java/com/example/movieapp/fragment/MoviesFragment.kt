@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.movieapp.R
+import com.example.movieapp.databinding.FragmentMoviesBinding
 
 
 class MoviesFragment : Fragment() {
 
+    private lateinit var binding: FragmentMoviesBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,8 +22,12 @@ class MoviesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movies, container, false)
+        binding = FragmentMoviesBinding.inflate(inflater,container,false)
+        val view = binding.root
+
+
+
+        return view
     }
 
 
