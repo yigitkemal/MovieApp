@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/hostiles"
+        android:src="@drawable/hostiles_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -53,6 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Movie Name"
+                    android:fontFamily="@font/montserrat_bold"
                     android:textColor="@color/white"
                     android:textSize="28sp" />
 
@@ -62,6 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:text="Movie Category"
+                    android:fontFamily="@font/montserrat_light"
                     android:textColor="@color/white"
                     android:textSize="12sp" />
 
@@ -89,6 +91,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:text="7.0"
+                        android:fontFamily="@font/montserrat_regular"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -110,6 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:text="2 h 14 min"
+                        android:fontFamily="@font/montserrat_regular"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -132,8 +136,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:text="Director"
+                        android:fontFamily="@font/montserrat_bold"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/text_director_name"
@@ -141,8 +146,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:text="Director Name"
+                        android:fontFamily="@font/montserrat_light"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -156,8 +162,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:text="Writer"
+                        android:fontFamily="@font/montserrat_bold"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/text_writer_name"
@@ -165,8 +172,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:text="Writer Name"
+                        android:fontFamily="@font/montserrat_light"
                         android:textColor="@color/white"
-                        android:textSize="12sp" />
+                        android:textSize="10sp" />
 
                 </LinearLayout>
 
@@ -187,11 +195,12 @@
                     <TextView
                         android:id="@+id/text_movie_description"
                         android:layout_width="338dp"
+                        android:fontFamily="@font/montserrat_regular"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:text="@string/long_text"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
 
                 </LinearLayout>
@@ -214,6 +223,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="2dp"
                         android:text="Cast"
+                        android:fontFamily="@font/montserrat_bold"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 
