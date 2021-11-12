@@ -82,8 +82,8 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxJavaVersion"
 
-    //glide -> yerine picasso kullanıcam
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    //picasso photo
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation "com.android.support:palette-v7:$supportVersion"
     implementation "com.android.support:design:$supportVersion"

@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         val tabLayout = binding.tabLayout
 
         val adapter = ViewPagerAdapter(supportFragmentManager,lifecycle)
+        //this line disable swiping
+        viewPager.isUserInputEnabled = false
         viewPager.adapter = adapter
 
 

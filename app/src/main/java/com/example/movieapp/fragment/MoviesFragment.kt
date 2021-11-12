@@ -53,7 +53,7 @@ class MoviesFragment : Fragment() {
 
     }
 
-    fun observeLiveData(){
+    private fun observeLiveData(){
         viewModel.movies.observe(viewLifecycleOwner, Observer {movies ->
             movies?.let {
                 binding.movieRecyclerviewList.visibility = View.VISIBLE

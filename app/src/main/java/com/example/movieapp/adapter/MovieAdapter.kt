@@ -1,11 +1,17 @@
 package com.example.movieapp.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.NonNull
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.example.movieapp.R
+import com.example.movieapp.activity.MovieActivity
 import com.example.movieapp.databinding.ItemMovieBinding
+import com.example.movieapp.fragment.MoviesFragmentDirections
 import com.example.movieapp.model.Movie
+import com.squareup.picasso.Picasso
 
 class MovieAdapter(val moviesList: ArrayList<Movie>):
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
@@ -21,6 +27,14 @@ class MovieAdapter(val moviesList: ArrayList<Movie>):
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.binding.textItemMovie.setText(moviesList.get(position).movieName)
+        Picasso.get()
+            .load(moviesList.get(position).moviePhotoUrl)
+            .into(holder.binding.imageItemMovie)
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, MovieActivity::class.java)
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
