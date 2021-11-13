@@ -4,16 +4,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import com.example.movieapp.R
 import com.example.movieapp.databinding.ActivityMovieBinding
-import com.example.movieapp.model.FeedViewModel
+import com.example.movieapp.model.Movie
 import com.example.movieapp.model.MovieViewModel
+import com.squareup.picasso.Picasso
 
-class MovieActivity : AppCompatActivity() {
+class MovieActivity() : AppCompatActivity() {
 
     private lateinit var viewModel: MovieViewModel
     private lateinit var binding: ActivityMovieBinding
+
+    val URL_HOLDER: String = "https://api.time.com/wp-content/uploads/2014/10/interstellar.jpg"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +25,8 @@ class MovieActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
         viewModel.getDataFromRoom()
 
+        observeLiveData()
+
     }
 
     private fun observeLiveData(){
@@ -32,7 +35,9 @@ class MovieActivity : AppCompatActivity() {
                 binding.textMovieName.text = movie.movieName
                 binding.textMovieRate.text = movie.voteAverage
                 binding.textMovieDescription.text = movie.descriptionOverview
-
+                Picasso.get()
+                    .load(URL_HOLDER)
+                    .into(binding.imageView)
             }
         })
     }

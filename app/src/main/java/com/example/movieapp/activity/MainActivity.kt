@@ -17,6 +17,16 @@ class MainActivity : AppCompatActivity() {
     // API Key
     // a195e377afe07079b5ccdf8d794572ce
 
+    // Example Api Request
+    // https://api.themoviedb.org/3/movie/550?api_key=a195e377afe07079b5ccdf8d794572ce
+
+    // for image
+    // https://image.tmdb.org/t/p/w500/500xj7l72BojMZ3tNBJY46tg5YJ.jpg
+
+    // daily trends
+    // https://api.themoviedb.org/3/trending/all/day?api_key=a195e377afe07079b5ccdf8d794572ce
+
+
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
