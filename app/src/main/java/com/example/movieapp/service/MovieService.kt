@@ -1,7 +1,8 @@
 package com.example.movieapp.service
 
-import android.database.Observable
 import com.example.movieapp.model.Movie
+import io.reactivex.Observable
+import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -17,7 +18,7 @@ class MovieService {
         .build()
         .create(MovieAPI::class.java)
 
-    fun getDailyTrend(): io.reactivex.Observable<List<Movie>> {
+    fun getDailyTrend(): Observable<List<Movie>> {
         return api.getDailyTrendings()
     }
 }
