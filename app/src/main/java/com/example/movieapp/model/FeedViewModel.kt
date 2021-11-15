@@ -27,12 +27,12 @@ class FeedViewModel : ViewModel() {
 
         getDataFromAPI()
 
-        /*
+
         val movie = Movie("Interstaller",URL_HOLDER,URL_HOLDER,"8.3", R.string.long_text.toString())
         val movieList = arrayListOf<Movie>(movie)
 
         movies.value = movieList
-        */
+
 
 
         movieError.value = false
