@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.activity.MovieActivity
 import com.example.movieapp.databinding.ItemMovieBinding
-import com.example.movieapp.model.Movie
+import com.example.movieapp.model.Result
 import com.squareup.picasso.Picasso
 
-class MovieAdapter(val moviesList: ArrayList<Movie>):
+class MovieAdapter(val moviesList: List<Result>):
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     class MovieViewHolder(val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -22,9 +22,12 @@ class MovieAdapter(val moviesList: ArrayList<Movie>):
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.binding.textItemMovie.setText(moviesList.get(position).movieName)
+        // for image
+        // https://image.tmdb.org/t/p/w500/500xj7l72BojMZ3tNBJY46tg5YJ.jpg
+
+        holder.binding.textItemMovie.setText(moviesList.get(position).title)
         Picasso.get()
-            .load(moviesList.get(position).moviePhotoUrl)
+            .load("https://image.tmdb.org/t/p/w500/"+moviesList.get(position).poster_path)
             .into(holder.binding.imageItemMovie)
 
         holder.itemView.setOnClickListener {
@@ -38,9 +41,9 @@ class MovieAdapter(val moviesList: ArrayList<Movie>):
         return moviesList.size
     }
 
-    fun updataMoiveList(newMovieList: List<Movie>){
-        moviesList.clear()
-        moviesList.addAll(newMovieList)
+    fun updataMoiveList(newMovieList: List<Result>){
+        //moviesList.clear()
+        //moviesList.addAll(newMovieList)
         notifyDataSetChanged()
     }
 

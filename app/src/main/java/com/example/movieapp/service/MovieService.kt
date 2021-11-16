@@ -1,8 +1,6 @@
 package com.example.movieapp.service
 
-import com.example.movieapp.model.Movie
-import io.reactivex.Observable
-import io.reactivex.Single
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,10 +13,11 @@ class MovieService {
         .baseUrl(BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .client(OkHttpClient.Builder().build())
         .build()
         .create(MovieAPI::class.java)
 
-    fun getDailyTrend(): Observable<List<Movie>> {
-        return api.getDailyTrendings()
+    fun buildService(): MovieAPI {
+        return api
     }
 }

@@ -1,14 +1,10 @@
 package com.example.movieapp.model
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.movieapp.R
 import com.example.movieapp.service.MovieService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.observers.DisposableObserver
-import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
 class FeedViewModel : ViewModel() {
@@ -16,7 +12,8 @@ class FeedViewModel : ViewModel() {
     private val movieApiService = MovieService()
     private val disposable = CompositeDisposable()
 
-    val movies = MutableLiveData<List<Movie>>()
+    val moviesHolder = MutableLiveData<List<PopularMovies>>()
+    val movies = MutableLiveData<List<Result>>()
     val movieError = MutableLiveData<Boolean>()
     val movieLoading = MutableLiveData<Boolean>()
 
@@ -28,10 +25,10 @@ class FeedViewModel : ViewModel() {
         getDataFromAPI()
 
 
-        val movie = Movie("Interstaller",URL_HOLDER,URL_HOLDER,"8.3", R.string.long_text.toString())
-        val movieList = arrayListOf<Movie>(movie)
+        /* val movie = Movie("Interstaller",URL_HOLDER,URL_HOLDER,"8.3", R.string.long_text.toString())
+         val movieList = arrayListOf<Movie>(movie)
 
-        movies.value = movieList
+         movies.value = movieList  */
 
 
 
@@ -43,46 +40,53 @@ class FeedViewModel : ViewModel() {
     private fun getDataFromAPI() {
         movieLoading.value = true
 
-        movieApiService.getDailyTrend()
+        movieApiService.buildService().getDailyTrendings()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribeWith(object : DisposableObserver<List<Movie>>(){
-                override fun onNext(t: List<Movie>) {
-                    movies.value = t
-                    movieError.value = false
-                    movieLoading.value = false
-                }
-
-                override fun onError(e: Throwable) {
-                    movieLoading.value = false
-                    movieError.value = true
-                    e.printStackTrace()
-                }
-
-                override fun onComplete() {
-                    movieError.value = false
-                    movieLoading.value = false
-                }
-
-            })
+            .subscribe({ response -> onResponse(response) }, { t -> onFailure(t) })
 
 
-           /* .subscribeWith(object : DisposableSingleObserver<List<Movie>>() {
-                override fun onSuccess(t: List<Movie>) {
-                    movies.value = t
-                    movieError.value = false
-                    movieLoading.value = false
-                }
+        /*
+    .observeOn(AndroidSchedulers.mainThread())
+    .subscribeOn(Schedulers.io())
+    .subscribeWith(object : DisposableSingleObserver<List<TrendMovie>>() {
+        override fun onSuccess(t: List<TrendMovie>) {
+            moviesHolder.value = t
+            movieError.value = false
+            movieLoading.value = false
 
-                override fun onError(e: Throwable) {
-                    movieLoading.value = false
-                    movieError.value = true
-                    e.printStackTrace()
-                }
+            for(movie in moviesHolder.value!!){
+               println(movie.results.toString()+" ------------------------- ")
+            }
+        }
 
-            }) */
+        override fun onError(e: Throwable) {
+            movieLoading.value = false
+            movieError.value = true
+            e.printStackTrace()
+        }
+
+    })
+
+
+     */
 
     }
+
+    private fun onFailure(t: Throwable) {
+        t.printStackTrace()
+    }
+
+    private fun onResponse(response: List<PopularMovies>) {
+        movieLoading.value = false
+        movieError.value = false
+        moviesHolder.value = response
+
+        for (i in moviesHolder.value!!){
+            movies.value = i.results
+        }
+    }
+
 
 }
 
