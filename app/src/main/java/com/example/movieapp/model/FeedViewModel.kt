@@ -2,9 +2,11 @@ package com.example.movieapp.model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.movieapp.R
 import com.example.movieapp.service.MovieService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
 class FeedViewModel : ViewModel() {
@@ -12,81 +14,51 @@ class FeedViewModel : ViewModel() {
     private val movieApiService = MovieService()
     private val disposable = CompositeDisposable()
 
-    val moviesHolder = MutableLiveData<List<PopularMovies>>()
-    val movies = MutableLiveData<List<Result>>()
+    val movies = MutableLiveData<List<Movie>>()
     val movieError = MutableLiveData<Boolean>()
     val movieLoading = MutableLiveData<Boolean>()
 
-    val URL_HOLDER: String =
-        "https://ae01.alicdn.com/kf/H9711afcae69f40fba4d68b8fad8c6ce4j/Hostiles-film-h-ristiyan-balya-Rosamund-Pike-Wes-Studi-sanat-bask-pek-poster-ev-duvar-dekoru.jpg_q50.jpg"
+    val URL_HOLDER: String = "500xj7l72BojMZ3tNBJY46tg5YJ.jpg"
+
 
     fun refreshData() {
 
-        getDataFromAPI()
+        //çalışan test alanım
+       /* val movie =
+            Movie(
+                "Interstaller",
+                URL_HOLDER,
+                URL_HOLDER,
+                "8.3",
+                R.string.long_text.toString()
+            )
+
+        val movieList = arrayListOf<Movie>(movie)  */
 
 
-        /* val movie = Movie("Interstaller",URL_HOLDER,URL_HOLDER,"8.3", R.string.long_text.toString())
-         val movieList = arrayListOf<Movie>(movie)
+        disposable.add(
+           MovieService().buildService().getDailyTrendings()
+               .observeOn(AndroidSchedulers.mainThread())
+               .subscribeOn(Schedulers.io())
+               .subscribe({response -> onResponse(response)}, {t -> onFailure(t) }))
 
-         movies.value = movieList  */
 
-
+       /* movies.value = movieList
 
         movieError.value = false
-        movieLoading.value = false
+        movieLoading.value = false*/
     }
 
-
-    private fun getDataFromAPI() {
-        movieLoading.value = true
-
-        movieApiService.buildService().getDailyTrendings()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe({ response -> onResponse(response) }, { t -> onFailure(t) })
-
-
-        /*
-    .observeOn(AndroidSchedulers.mainThread())
-    .subscribeOn(Schedulers.io())
-    .subscribeWith(object : DisposableSingleObserver<List<TrendMovie>>() {
-        override fun onSuccess(t: List<TrendMovie>) {
-            moviesHolder.value = t
-            movieError.value = false
-            movieLoading.value = false
-
-            for(movie in moviesHolder.value!!){
-               println(movie.results.toString()+" ------------------------- ")
-            }
-        }
-
-        override fun onError(e: Throwable) {
-            movieLoading.value = false
-            movieError.value = true
-            e.printStackTrace()
-        }
-
-    })
-
-
-     */
-
-    }
 
     private fun onFailure(t: Throwable) {
         t.printStackTrace()
     }
 
-    private fun onResponse(response: List<PopularMovies>) {
-        movieLoading.value = false
+    private fun onResponse(response: PopularMovies) {
+        movies.value = response.results
         movieError.value = false
-        moviesHolder.value = response
-
-        for (i in moviesHolder.value!!){
-            movies.value = i.results
-        }
+        movieLoading.value = false
     }
-
 
 }
 
@@ -103,4 +75,36 @@ class FeedViewModel : ViewModel() {
 
 
     val movieList = arrayListOf<Movie>(movie,movie2,movie3,movie4,movie5,movie6,movie7,movie8)
+*/
+
+
+/* val movie = Movie("Interstaller",URL_HOLDER,URL_HOLDER,"8.3", R.string.long_text.toString())
+ val movieList = arrayListOf<Movie>(movie)
+
+ movies.value = movieList  */
+
+
+/*
+.observeOn(AndroidSchedulers.mainThread())
+    .subscribeOn(Schedulers.io())
+    .subscribeWith(object : DisposableSingleObserver<List<PopularMovies>>() {
+        override fun onSuccess(t: List<PopularMovies>) {
+            moviesHolder.value = t
+            movieError.value = false
+            movieLoading.value = false
+
+            for(movie in moviesHolder.value!!){
+                println(movie.results.toString()+" ------------------------- ")
+            }
+        }
+
+        override fun onError(e: Throwable) {
+            movieLoading.value = false
+            movieError.value = true
+            e.printStackTrace()
+        }
+
+    })
+
+
 */

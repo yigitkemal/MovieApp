@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.adapter.MovieAdapter
 import com.example.movieapp.databinding.FragmentMoviesBinding
 import com.example.movieapp.model.FeedViewModel
+import com.example.movieapp.model.Movie
 
 
 class MoviesFragment : Fragment() {
@@ -54,7 +55,7 @@ class MoviesFragment : Fragment() {
         viewModel.movies.observe(viewLifecycleOwner, Observer {movies ->
             movies?.let {
                 binding.movieRecyclerviewList.visibility = View.VISIBLE
-                movieAdapter.updataMoiveList(movies)
+                movieAdapter.updataMoiveList(movies as ArrayList<Movie>)
             }
         })
 

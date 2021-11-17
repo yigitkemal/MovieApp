@@ -4,5 +4,6 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class PopularMovies(
-    val results: List<Result>
+    @SerializedName("results")
+    val results: List<Movie>
 )

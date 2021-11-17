@@ -26,6 +26,9 @@ class MainActivity : AppCompatActivity() {
     // daily trends
     // https://api.themoviedb.org/3/trending/all/day?api_key=a195e377afe07079b5ccdf8d794572ce
 
+    // popular
+    // https://api.themoviedb.org/3/movie/popular?api_key=a195e377afe07079b5ccdf8d794572ce
+
 
     private lateinit var binding: ActivityMainBinding
 
