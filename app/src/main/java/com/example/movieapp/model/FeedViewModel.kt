@@ -23,8 +23,15 @@ class FeedViewModel : ViewModel() {
 
     fun refreshData() {
 
+          disposable.add(
+         MovieService().buildService().getDailyTrendings()
+             .observeOn(AndroidSchedulers.mainThread())
+             .subscribeOn(Schedulers.io())
+             .subscribe({response -> onResponse(response)}, {t -> onFailure(t) }))
+
+
         //çalışan test alanım
-       /* val movie =
+        /* val movie =
             Movie(
                 "Interstaller",
                 URL_HOLDER,
@@ -33,18 +40,10 @@ class FeedViewModel : ViewModel() {
                 R.string.long_text.toString()
             )
 
-        val movieList = arrayListOf<Movie>(movie)  */
+        val movieList = arrayListOf<Movie>(movie)
 
 
-        disposable.add(
-           MovieService().buildService().getDailyTrendings()
-               .observeOn(AndroidSchedulers.mainThread())
-               .subscribeOn(Schedulers.io())
-               .subscribe({response -> onResponse(response)}, {t -> onFailure(t) }))
-
-
-       /* movies.value = movieList
-
+        movies.value = movieList
         movieError.value = false
         movieLoading.value = false*/
     }
@@ -55,9 +54,19 @@ class FeedViewModel : ViewModel() {
     }
 
     private fun onResponse(response: PopularMovies) {
-        movies.value = response.results
+
+        val movieList = arrayListOf<Movie>()
+
+        for (i in response.results){
+            movieList.add(i)
+        }
+        println(movieList.size.toString() + "----------------------")
+
+        movies.value = movieList
         movieError.value = false
         movieLoading.value = false
+
+
     }
 
 }
