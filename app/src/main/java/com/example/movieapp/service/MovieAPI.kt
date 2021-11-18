@@ -9,9 +9,11 @@ interface MovieAPI {
 
     // Example Api Request
     // https://api.themoviedb.org/3/movie/550?api_key=a195e377afe07079b5ccdf8d794572ce
+    // movie/popular?api_key=a195e377afe07079b5ccdf8d794572ce
+    // movie/550?api_key=a195e377afe07079b5ccdf8d794572ce
 
-    @GET("movie/550?api_key=a195e377afe07079b5ccdf8d794572ce")
-    fun getDailyTrendings(): Observable<PopularMovies>
+    @GET("movie/popular?api_key=a195e377afe07079b5ccdf8d794572ce")
+    fun getPopular(): Observable<PopularMovies>
 
 
 
