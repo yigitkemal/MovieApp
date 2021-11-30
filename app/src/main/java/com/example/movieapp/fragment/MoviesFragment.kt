@@ -47,6 +47,16 @@ class MoviesFragment : Fragment() {
         binding.movieRecyclerviewList.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         binding.movieRecyclerviewList.adapter = movieAdapter
 
+        //refresh layout alanım
+        binding.swipeRefreshLayoutMovies.setOnRefreshListener {
+           binding.movieRecyclerviewList.visibility = View.GONE
+           binding.moviesError.visibility = View.GONE
+           binding.moviesLoading.visibility = View.VISIBLE
+
+           viewModel.refreshData()
+           binding.swipeRefreshLayoutMovies.isRefreshing = false
+        }
+
         observeLiveData()
 
     }
