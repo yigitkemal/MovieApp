@@ -12,4 +12,7 @@ data class Movie(
     @SerializedName("vote_average")
     val voteAverage: String?,
     @SerializedName("overview")
-    val descriptionOverview: String?)
+    val descriptionOverview: String?,
+    @SerializedName("id")
+    val movieId: Int)
+

@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
     // popular
     // https://api.themoviedb.org/3/movie/popular?api_key=a195e377afe07079b5ccdf8d794572ce
 
+    // for movie
+    // https://api.themoviedb.org/3/movie/550?api_key=a195e377afe07079b5ccdf8d794572ce
 
     private lateinit var binding: ActivityMainBinding
 

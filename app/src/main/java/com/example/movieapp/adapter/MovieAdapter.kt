@@ -31,9 +31,10 @@ class MovieAdapter(val moviesList: ArrayList<Movie>):
             .into(holder.binding.imageItemMovie)
 
         holder.itemView.setOnClickListener {
-            holder.itemView.context.startActivity(Intent(holder.itemView.context, MovieActivity()::class.java))
-
-
+            val intent = Intent(holder.itemView.context, MovieActivity()::class.java)
+            intent.putExtra("movieId",moviesList.get(position).movieId)
+            holder.itemView.context.startActivity(intent)
+        //holder.itemView.context.startActivity(Intent(holder.itemView.context, MovieActivity()::class.java))
         }
     }
 

@@ -20,14 +20,12 @@ class FeedViewModel : ViewModel() {
 
 
     fun refreshData() {
-
         disposable.add(
             MovieService().buildService().getPopular()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({ response -> onResponse(response) }, { t -> onFailure(t) })
         )
-
     }
 
 
