@@ -40,8 +40,6 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-
-
         val viewPager = binding.viewPager2
         val tabLayout = binding.tabLayout
 
