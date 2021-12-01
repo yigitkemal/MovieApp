@@ -3,6 +3,7 @@ package com.example.movieapp.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.movieapp.databinding.ActivityMovieBinding
@@ -31,6 +32,10 @@ class MovieActivity() : AppCompatActivity() {
         viewModel.getDataFromRoom()
 
         observeLiveData()
+
+        binding.checkboxMovieFav.setOnClickListener {
+            Toast.makeText(this,"Movie added the favourites.",Toast.LENGTH_LONG).show()
+        }
 
     }
 
