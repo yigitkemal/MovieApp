@@ -22,7 +22,9 @@ interface MovieAPI {
     @GET("{movieId}?api_key=a195e377afe07079b5ccdf8d794572ce&language=en-US")
     fun getMovies(
         @Path("movieId") movieId: String
-    )
-    : Observable<MovieDetailModel>
+    ): Observable<MovieDetailModel>
+
+    @GET("top_rated?api_key=a195e377afe07079b5ccdf8d794572ce&language=en-US&page=1")
+    fun getTopRated(): Observable<PopularMovies>
 
 }

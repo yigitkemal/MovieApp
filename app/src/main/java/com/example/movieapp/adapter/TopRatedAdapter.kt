@@ -9,19 +9,20 @@ import com.example.movieapp.databinding.ItemMovieBinding
 import com.example.movieapp.model.Movie
 import com.squareup.picasso.Picasso
 
-class MovieAdapter(val moviesList: ArrayList<Movie>):
-    RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    class MovieViewHolder(val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
+class TopRatedAdapter(val moviesList: ArrayList<Movie>):
+    RecyclerView.Adapter<TopRatedAdapter.TopRatedViewHolder>() {
+
+    class TopRatedViewHolder(val binding: ItemMovieBinding) : RecyclerView.ViewHolder(binding.root) {
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TopRatedViewHolder {
         val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return MovieViewHolder(binding)
+        return TopRatedViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TopRatedViewHolder, position: Int) {
         // for image
         // https://image.tmdb.org/t/p/w500/500xj7l72BojMZ3tNBJY46tg5YJ.jpg
 
@@ -34,7 +35,7 @@ class MovieAdapter(val moviesList: ArrayList<Movie>):
             val intent = Intent(holder.itemView.context, MovieActivity()::class.java)
             intent.putExtra("movieId",moviesList.get(position).movieId)
             holder.itemView.context.startActivity(intent)
-        //holder.itemView.context.startActivity(Intent(holder.itemView.context, MovieActivity()::class.java))
+            //holder.itemView.context.startActivity(Intent(holder.itemView.context, MovieActivity()::class.java))
         }
     }
 

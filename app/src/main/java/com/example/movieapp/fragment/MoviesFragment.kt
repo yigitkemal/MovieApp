@@ -8,18 +8,22 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.movieapp.adapter.MovieAdapter
+import com.example.movieapp.adapter.DailyTrendAdapter
+import com.example.movieapp.adapter.TopRatedAdapter
 import com.example.movieapp.databinding.FragmentMoviesBinding
-import com.example.movieapp.model.FeedViewModel
+import com.example.movieapp.model.DailyTrendViewModel
 import com.example.movieapp.model.Movie
+import com.example.movieapp.model.TopRatedViewModel
 
 
 class MoviesFragment : Fragment() {
 
     private lateinit var binding: FragmentMoviesBinding
 
-    private lateinit var viewModel: FeedViewModel
-    private val movieAdapter = MovieAdapter(arrayListOf())
+    private lateinit var dailyTrendViewModel: DailyTrendViewModel
+    private lateinit var topRatedViewModel: TopRatedViewModel
+    private val dailyTrendAdapter = DailyTrendAdapter(arrayListOf())
+    private val topRatedAdapter = TopRatedAdapter(arrayListOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,27 +38,39 @@ class MoviesFragment : Fragment() {
         val view = binding.root
 
 
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(FeedViewModel::class.java)
-        viewModel.refreshData()
+        dailyTrendViewModel = ViewModelProvider(this).get(DailyTrendViewModel::class.java)
+        dailyTrendViewModel.refreshData()
+
+        //top rated viewmodel init
+        topRatedViewModel = ViewModelProvider(this).get(TopRatedViewModel::class.java)
+        topRatedViewModel.refreshData()
 
         binding.movieRecyclerviewList.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-        binding.movieRecyclerviewList.adapter = movieAdapter
+        binding.movieRecyclerviewList.adapter = dailyTrendAdapter
+
+        //top rated recyclerview
+        binding.movieRecyclerviewListMostPopular.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        binding.movieRecyclerviewListMostPopular.adapter = topRatedAdapter
 
         //refresh layout alanım
         binding.swipeRefreshLayoutMovies.setOnRefreshListener {
-           binding.movieRecyclerviewList.visibility = View.GONE
-           binding.moviesError.visibility = View.GONE
-           binding.moviesLoading.visibility = View.VISIBLE
+            binding.movieRecyclerviewList.visibility = View.GONE
+            binding.moviesError.visibility = View.GONE
+            binding.moviesLoading.visibility = View.VISIBLE
 
-           viewModel.refreshData()
-           binding.swipeRefreshLayoutMovies.isRefreshing = false
+            binding.movieRecyclerviewListMostPopular.visibility = View.GONE
+            binding.moviesErrorMostPopular.visibility = View.GONE
+            binding.moviesLoadingMostPopular.visibility = View.VISIBLE
+
+            dailyTrendViewModel.refreshData()
+            topRatedViewModel.refreshData()
+            binding.swipeRefreshLayoutMovies.isRefreshing = false
         }
 
         observeLiveData()
@@ -62,14 +78,14 @@ class MoviesFragment : Fragment() {
     }
 
     private fun observeLiveData(){
-        viewModel.movies.observe(viewLifecycleOwner, Observer {movies ->
+        dailyTrendViewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
             movies?.let {
                 binding.movieRecyclerviewList.visibility = View.VISIBLE
-                movieAdapter.updataMoiveList(movies as ArrayList<Movie>)
+                dailyTrendAdapter.updataMoiveList(movies as ArrayList<Movie>)
             }
         })
 
-        viewModel.movieLoading.observe(viewLifecycleOwner, Observer {moviesLoading ->
+        dailyTrendViewModel.movieLoading.observe(viewLifecycleOwner, Observer { moviesLoading ->
             moviesLoading?.let {
                 if(it){
                     binding.moviesLoading.visibility = View.VISIBLE
@@ -81,7 +97,7 @@ class MoviesFragment : Fragment() {
             }
         })
 
-        viewModel.movieError.observe(viewLifecycleOwner, Observer { movieError ->
+        dailyTrendViewModel.movieError.observe(viewLifecycleOwner, Observer { movieError ->
             movieError?.let {
                 if(it){
                     binding.moviesError.visibility = View.VISIBLE
@@ -90,6 +106,38 @@ class MoviesFragment : Fragment() {
                 }
             }
         })
+
+
+        topRatedViewModel.movies.observe(viewLifecycleOwner, Observer { movies ->
+            movies?.let {
+                binding.movieRecyclerviewListMostPopular.visibility = View.VISIBLE
+                topRatedAdapter.updataMoiveList(movies as ArrayList<Movie>)
+            }
+        })
+
+        topRatedViewModel.movieLoading.observe(viewLifecycleOwner, Observer { moviesLoading ->
+            moviesLoading?.let {
+                if(it){
+                    binding.moviesLoadingMostPopular.visibility = View.VISIBLE
+                    binding.movieRecyclerviewListMostPopular.visibility = View.GONE
+                    binding.moviesErrorMostPopular.visibility = View.GONE
+                }else{
+                    binding.moviesLoadingMostPopular.visibility = View.GONE
+                }
+            }
+        })
+
+        topRatedViewModel.movieError.observe(viewLifecycleOwner, Observer { movieError ->
+            movieError?.let {
+                if(it){
+                    binding.moviesErrorMostPopular.visibility = View.VISIBLE
+                }else{
+                    binding.moviesErrorMostPopular.visibility = View.GONE
+                }
+            }
+        })
+
+
     }
 
 
