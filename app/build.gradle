@@ -91,7 +91,7 @@ dependencies {
     implementation "androidx.preference:preference:$preferencesVersion"
 
     // youtube view
-    implementation files("libs\\YouTubeAndroidPlayerApi.jar")
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.23'
 
 
 }

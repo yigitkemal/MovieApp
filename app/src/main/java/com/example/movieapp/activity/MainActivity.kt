@@ -6,7 +6,6 @@ import com.example.movieapp.R
 import com.example.movieapp.adapter.ViewPagerAdapter
 import com.example.movieapp.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.android.youtube.player.YouTubeBaseActivity
 
 val fragmentsArray = arrayOf(
     "Movies",

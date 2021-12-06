@@ -17,9 +17,8 @@ import com.example.movieapp.databinding.FragmentMoviesBinding
 import com.example.movieapp.model.DailyTrendViewModel
 import com.example.movieapp.model.Movie
 import com.example.movieapp.model.TopRatedViewModel
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerView
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
 
 class MoviesFragment : Fragment() {
@@ -27,10 +26,6 @@ class MoviesFragment : Fragment() {
     private val YOUTUBE_API_KEY: String = "AIzaSyDNJ951Xhse0wpx_VJPCrcK6JrEanMMJbQ"
     val onlineUri: Uri = Uri.parse("https://www.youtube.com/watch?v=n9xhJrPXop4")
     val vidId: String = "n9xhJrPXop4"
-
-    private lateinit var youTubePlayer: YouTubePlayerView
-
-    lateinit var youtubePlayerInit: YouTubePlayer.OnInitializedListener
 
     private lateinit var binding: FragmentMoviesBinding
 
@@ -90,25 +85,14 @@ class MoviesFragment : Fragment() {
 
         observeLiveData()
 
-        youTubePlayer = binding.youtubeTrailer
-        youtubePlayerInit = object :YouTubePlayer.OnInitializedListener{
-            override fun onInitializationSuccess(
-                p0: YouTubePlayer.Provider?,
-                p1: YouTubePlayer?,
-                p2: Boolean
-            ) {
-                p1?.loadVideo(vidId)
-            }
+        lifecycle.addObserver(binding.youtubeTrailer)
 
-            override fun onInitializationFailure(
-                p0: YouTubePlayer.Provider?,
-                p1: YouTubeInitializationResult?
-            ) {
-                Toast.makeText(context,"Failed!",Toast.LENGTH_LONG).show()
+        binding.youtubeTrailer.addYouTubePlayerListener(object: AbstractYouTubePlayerListener(){
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+               youTubePlayer.loadVideo(vidId,0f)
             }
-        }
+        })
 
-        youTubePlayer.initialize(YOUTUBE_API_KEY,youtubePlayerInit)
 
     }
 

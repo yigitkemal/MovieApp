@@ -15,21 +15,22 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="30dp">
+                android:layout_height="match_parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintLayoutTrailer"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="250dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.google.android.youtube.player.YouTubePlayerView
+                    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
                         android:id="@+id/youtube_trailer"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        app:autoPlay="true"
+                        app:videoId="n9xhJrPXop4"
                         android:layout_margin="15dp" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
