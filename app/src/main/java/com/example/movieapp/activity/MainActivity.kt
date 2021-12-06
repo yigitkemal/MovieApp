@@ -6,6 +6,7 @@ import com.example.movieapp.R
 import com.example.movieapp.adapter.ViewPagerAdapter
 import com.example.movieapp.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.youtube.player.YouTubeBaseActivity
 
 val fragmentsArray = arrayOf(
     "Movies",
@@ -14,7 +15,10 @@ val fragmentsArray = arrayOf(
 
 class MainActivity : AppCompatActivity() {
 
-    // API Key
+    // google api key
+    // AIzaSyDNJ951Xhse0wpx_VJPCrcK6JrEanMMJbQ
+
+    // tmdb API Key
     // a195e377afe07079b5ccdf8d794572ce
 
     // Example Api Request
