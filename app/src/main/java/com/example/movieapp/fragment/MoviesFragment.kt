@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.MediaController
 import android.widget.Toast
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.movieapp.adapter.DailyTrendAdapter
 import com.example.movieapp.adapter.TopRatedAdapter
+import com.example.movieapp.adapter.TrailerAdapter
 import com.example.movieapp.databinding.FragmentMoviesBinding
 import com.example.movieapp.model.DailyTrendViewModel
 import com.example.movieapp.model.Movie
@@ -25,7 +27,7 @@ class MoviesFragment : Fragment() {
 
     private val YOUTUBE_API_KEY: String = "AIzaSyDNJ951Xhse0wpx_VJPCrcK6JrEanMMJbQ"
     val onlineUri: Uri = Uri.parse("https://www.youtube.com/watch?v=n9xhJrPXop4")
-    val vidId: String = "n9xhJrPXop4"
+    val vidId: String = "ROH4ercgqE0"
 
     private lateinit var binding: FragmentMoviesBinding
 
@@ -33,6 +35,9 @@ class MoviesFragment : Fragment() {
     private lateinit var topRatedViewModel: TopRatedViewModel
     private val dailyTrendAdapter = DailyTrendAdapter(arrayListOf())
     private val topRatedAdapter = TopRatedAdapter(arrayListOf())
+    private val trailerAdapter = TrailerAdapter(arrayListOf(),lifecycle)
+
+    private val trailerList = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,13 +90,17 @@ class MoviesFragment : Fragment() {
 
         observeLiveData()
 
-        lifecycle.addObserver(binding.youtubeTrailer)
+        // trailer işlemleri
+        trailerList.add("ROH4ercgqE0")
+        trailerList.add("ROH4ercgqE0")
+        trailerList.add("ROH4ercgqE0")
+        trailerList.add("ROH4ercgqE0")
 
-        binding.youtubeTrailer.addYouTubePlayerListener(object: AbstractYouTubePlayerListener(){
-            override fun onReady(youTubePlayer: YouTubePlayer) {
-               youTubePlayer.loadVideo(vidId,0f)
-            }
-        })
+        binding.recyclerViewTrailer.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.HORIZONTAL,
+            false)
+        binding.recyclerViewTrailer.adapter = trailerAdapter
 
 
     }
