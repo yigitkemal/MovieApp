@@ -19,6 +19,7 @@ import com.example.movieapp.databinding.FragmentMoviesBinding
 import com.example.movieapp.model.DailyTrendViewModel
 import com.example.movieapp.model.Movie
 import com.example.movieapp.model.TopRatedViewModel
+import com.example.movieapp.model.TrailerViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
@@ -38,6 +39,7 @@ class MoviesFragment : Fragment() {
     private val trailerAdapter = TrailerAdapter(arrayListOf(),lifecycle)
 
     private val trailerList = ArrayList<String>()
+    private lateinit var trailerViewModel: TrailerViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +66,10 @@ class MoviesFragment : Fragment() {
         topRatedViewModel = ViewModelProvider(this).get(TopRatedViewModel::class.java)
         topRatedViewModel.refreshData()
 
+        // trailer viewmodel init
+        trailerViewModel = ViewModelProvider(this).get(TrailerViewModel::class.java)
+        trailerViewModel.refreshData()
+
         binding.movieRecyclerviewList.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.movieRecyclerviewList.adapter = dailyTrendAdapter
@@ -72,6 +78,11 @@ class MoviesFragment : Fragment() {
         binding.movieRecyclerviewListMostPopular.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.movieRecyclerviewListMostPopular.adapter = topRatedAdapter
+
+        //trailer recyclerview
+        binding.recyclerViewTrailer.layoutManager =
+                LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        binding.recyclerViewTrailer.adapter = trailerAdapter
 
         //refresh layout alanım
         binding.swipeRefreshLayoutMovies.setOnRefreshListener {
@@ -85,13 +96,14 @@ class MoviesFragment : Fragment() {
 
             dailyTrendViewModel.refreshData()
             topRatedViewModel.refreshData()
+            trailerViewModel.refreshData()
             binding.swipeRefreshLayoutMovies.isRefreshing = false
         }
 
         observeLiveData()
 
         // trailer işlemleri
-        trailerList.add("ROH4ercgqE0")
+       /* trailerList.add("ROH4ercgqE0")
         trailerList.add("ROH4ercgqE0")
         trailerList.add("ROH4ercgqE0")
         trailerList.add("ROH4ercgqE0")
@@ -100,7 +112,7 @@ class MoviesFragment : Fragment() {
             context,
             LinearLayoutManager.HORIZONTAL,
             false)
-        binding.recyclerViewTrailer.adapter = trailerAdapter
+        binding.recyclerViewTrailer.adapter = trailerAdapter*/
 
 
     }
@@ -162,6 +174,12 @@ class MoviesFragment : Fragment() {
                 } else {
                     binding.moviesErrorMostPopular.visibility = View.GONE
                 }
+            }
+        })
+
+        trailerViewModel.trailers.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                trailerAdapter.updataMoiveList(trailerList as ArrayList<String>)
             }
         })
 

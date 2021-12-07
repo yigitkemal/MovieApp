@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.databinding.ItemTrailerBinding
+import com.example.movieapp.model.Movie
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
@@ -26,7 +27,7 @@ class TrailerAdapter(val trailerList: ArrayList<String>, val lifecycle: Lifecycl
             binding.youtubeTrailer.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
                 override fun onReady(initializedYouTubePlayer: YouTubePlayer) {
                     youTubePlayer = initializedYouTubePlayer
-                    youTubePlayer!!.cueVideo(currentVideoId!!, 0f)
+                    youTubePlayer!!.loadVideo(currentVideoId!!, 0f)
                 }
             })
         }
@@ -45,6 +46,12 @@ class TrailerAdapter(val trailerList: ArrayList<String>, val lifecycle: Lifecycl
 
     override fun getItemCount(): Int {
         return trailerList.size
+    }
+
+    fun updataMoiveList(newMovieTrailerList: ArrayList<String>){
+        trailerList.clear()
+        trailerList.addAll(newMovieTrailerList)
+        notifyDataSetChanged()
     }
 
 }

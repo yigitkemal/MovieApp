@@ -32,7 +32,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Daily Trend"
+                        android:text="What's New"
                         android:textColor="?attr/colorPrimaryVariant"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
