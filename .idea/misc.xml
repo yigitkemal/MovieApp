@@ -3,17 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../.gradle/caches/transforms-2/files-2.1/efdcfd624c68bce865cf9734c939dde4/jetified-duo-navigation-drawer-3.0.0/res/layout/duo_view_header.xml" value="0.2328125" />
         <entry key="app/src/main/res/drawable/custom_checkbox.xml" value="0.2324074074074074" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_24.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_border_24.xml" value="0.2324074074074074" />
         <entry key="app/src/main/res/drawable/ic_baseline_star_fav_24.xml" value="0.32592592592592595" />
         <entry key="app/src/main/res/drawable/ic_baseline_watch_later_24.xml" value="0.3333333333333333" />
+        <entry key="app/src/main/res/drawable/rectangle_rounded_shape.xml" value="0.2796296296296296" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.27314814814814814" />
         <entry key="app/src/main/res/layout/activity_movie.xml" value="0.33" />
         <entry key="app/src/main/res/layout/appbar_custom.xml" value="0.37604166666666666" />
         <entry key="app/src/main/res/layout/fragment_movies.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_trailer.xml" value="0.33" />
         <entry key="app/src/main/res/layout/nav_menu.xml" value="0.37604166666666666" />
+        <entry key="app/src/main/res/layout/view_footer.xml" value="0.37604166666666666" />
       </map>
     </option>
   </component>

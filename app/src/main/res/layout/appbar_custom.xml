@@ -17,11 +17,10 @@
             android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
             android:layout_centerInParent="true"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:src="@drawable/movie_logo"
             android:layout_marginEnd="10dp"
+            android:gravity="center"
             android:padding="10dp"
+            android:src="@drawable/movie_logo"
             android:textColor="?attr/colorPrimary"
             android:textSize="24sp"
             android:textStyle="bold" />
