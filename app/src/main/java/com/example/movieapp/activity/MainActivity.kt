@@ -2,10 +2,12 @@ package com.example.movieapp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toolbar
 import com.example.movieapp.R
 import com.example.movieapp.adapter.ViewPagerAdapter
 import com.example.movieapp.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import nl.psdcompany.duonavigationdrawer.widgets.DuoDrawerToggle
 
 val fragmentsArray = arrayOf(
     "Movies",
@@ -46,12 +48,21 @@ class MainActivity : AppCompatActivity() {
         val viewPager = binding.viewPager2
         val tabLayout = binding.tabLayout
 
+
         val adapter = ViewPagerAdapter(supportFragmentManager,lifecycle)
         //this line disable swiping
         viewPager.isUserInputEnabled = false
         viewPager.adapter = adapter
 
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
 
+        //duo nav
+        val drawerToggle =  DuoDrawerToggle(
+            this,binding.drawer,
+            toolbar,
+            "Opened",
+            "Closed"
+        )
 
         TabLayoutMediator(tabLayout, viewPager){
             tab, position -> tab.text = fragmentsArray[position]

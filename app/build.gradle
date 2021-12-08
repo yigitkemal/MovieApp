@@ -93,5 +93,8 @@ dependencies {
     // youtube view
     implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:chromecast-sender:0.23'
 
+    // duo nav
+    implementation 'nl.psdcompany:duo-navigation-drawer:3.0.0'
+
 
 }
