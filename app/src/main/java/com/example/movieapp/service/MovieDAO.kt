@@ -9,8 +9,6 @@ interface MovieDAO {
     @Insert
     suspend fun insertAkk(vararg movies: Movie): List<Long>
 
-
-
     @Query("SELECT * FROM movie")
     suspend fun getAllMovies(): List<Movie>
 
