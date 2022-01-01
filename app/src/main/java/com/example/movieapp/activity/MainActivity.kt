@@ -38,6 +38,9 @@ class MainActivity : AppCompatActivity() {
     // popular
     // https://api.themoviedb.org/3/movie/popular?api_key=a195e377afe07079b5ccdf8d794572ce
 
+    // poupular series
+    // https://api.themoviedb.org/3/tv/popular?api_key=a195e377afe07079b5ccdf8d794572ce&language=en-US&page=1
+
     // for movie
     // https://api.themoviedb.org/3/movie/550?api_key=a195e377afe07079b5ccdf8d794572ce
 

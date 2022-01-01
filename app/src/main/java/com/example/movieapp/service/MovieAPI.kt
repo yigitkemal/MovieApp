@@ -27,4 +27,7 @@ interface MovieAPI {
     @GET("top_rated?api_key=a195e377afe07079b5ccdf8d794572ce&language=en-US&page=1")
     fun getTopRated(): Observable<PopularMovies>
 
+    @GET("popular?api_key=a195e377afe07079b5ccdf8d794572ce&language=en-US&page=1")
+    fun getPopularTVSeries(): Observable<PopularMovies>
+
 }
