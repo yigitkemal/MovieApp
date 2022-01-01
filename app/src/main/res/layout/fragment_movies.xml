@@ -124,6 +124,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
@@ -183,6 +184,11 @@
                         app:layout_constraintTop_toTopOf="parent"></ProgressBar>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"></View>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
