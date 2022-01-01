@@ -20,6 +20,7 @@ class TrailerAdapter(val trailerList: ArrayList<String>, val lifecycle: Lifecycl
         fun cueVideo(videoId: String?) {
             currentVideoId = videoId
             if (youTubePlayer == null) return
+
             youTubePlayer!!.cueVideo(videoId!!, 0f)
         }
 

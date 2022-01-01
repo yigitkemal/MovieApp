@@ -38,7 +38,6 @@ class MovieViewModel :ViewModel() {
 
         println("Movie Id sini almayı başardım burada alın ------------------------------"+incomingMovieId)
 
-
     }
 
 
@@ -49,6 +48,10 @@ class MovieViewModel :ViewModel() {
     }
 
     fun onFailure(t: Throwable){
+
+    }
+
+    private fun storeInSQLite(response: MovieDetailModel){
 
     }
 

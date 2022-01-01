@@ -96,23 +96,26 @@ class MoviesFragment : Fragment() {
 
             dailyTrendViewModel.refreshData()
             topRatedViewModel.refreshData()
-            trailerViewModel.refreshData()
+           // trailerViewModel.refreshData()
             binding.swipeRefreshLayoutMovies.isRefreshing = false
         }
 
         observeLiveData()
 
-        // trailer işlemleri
-       /* trailerList.add("ROH4ercgqE0")
-        trailerList.add("ROH4ercgqE0")
-        trailerList.add("ROH4ercgqE0")
-        trailerList.add("ROH4ercgqE0")
+        // trailer işlemleri buradaki listeyi alıyor.
+        trailerList.add("NEVoI1cT3aE")
+        trailerList.add("51Hs01mjuXg")
+        trailerList.add("6rC8_F9MT2Y")
+        trailerList.add("C8ioRJJcch4")
 
         binding.recyclerViewTrailer.layoutManager = LinearLayoutManager(
             context,
             LinearLayoutManager.HORIZONTAL,
             false)
-        binding.recyclerViewTrailer.adapter = trailerAdapter*/
+        binding.recyclerViewTrailer.adapter = trailerAdapter
+
+
+
 
 
     }
@@ -188,3 +191,19 @@ class MoviesFragment : Fragment() {
 
 
 }
+
+
+/*
+
+this method works only one trailer
+
+lifecycle.addObserver(binding.youtubeTrailer)
+
+        binding.youtubeTrailer.addYouTubePlayerListener(object: AbstractYouTubePlayerListener(){
+            override fun onReady(youTubePlayer: YouTubePlayer) {
+               youTubePlayer.loadVideo(vidId,0f)
+            }
+        })
+
+
+ */

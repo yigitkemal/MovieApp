@@ -16,7 +16,7 @@ class TrailerViewModel : ViewModel() {
     fun refreshData() {
 
         val movieTrailerList = arrayListOf<String>(
-            "ROH4ercgqE0",
+            "NEVoI1cT3aE",
             "ROH4ercgqE0",
             "ROH4ercgqE0"
         )
