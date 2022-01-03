@@ -16,8 +16,8 @@ interface MovieAPI {
     // for movie
     // https://api.themoviedb.org/3/movie/512195?api_key=a195e377afe07079b5ccdf8d794572ce&language=en-US
 
-    // latest tv series
-    // https://api.themoviedb.org/3/tv/latest?api_key=a195e377afe07079b5ccdf8d794572ce&language=en-US
+    // popular tv series
+    // https://api.themoviedb.org/3/tv/popular?api_key=a195e377afe07079b5ccdf8d794572ce&language=en-US&page=1
 
     @GET("movie/popular?api_key=a195e377afe07079b5ccdf8d794572ce")
     fun getPopular(): Observable<PopularMovies>
@@ -30,7 +30,7 @@ interface MovieAPI {
     @GET("movie/top_rated?api_key=a195e377afe07079b5ccdf8d794572ce&language=en-US&page=1")
     fun getTopRated(): Observable<PopularMovies>
 
-    @GET("tv/latest?api_key=a195e377afe07079b5ccdf8d794572ce&language=en-US")
+    @GET("tv/popular?api_key=a195e377afe07079b5ccdf8d794572ce")
     fun getLatestTvShows(): Observable<PopularMovies>
 
 

@@ -45,7 +45,8 @@ class SeriesFragment : Fragment() {
         dailySeriesTrendViewModel.refreshData()
 
 
-        binding.seriesRecyclerviewList.layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+        binding.seriesRecyclerviewList.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.seriesRecyclerviewList.adapter = seriesDailyTrendAdapter
 
 
@@ -58,13 +59,39 @@ class SeriesFragment : Fragment() {
             dailySeriesTrendViewModel.refreshData()
         }
 
+        observeLiveData()
+
     }
 
-    private fun observeLiveData(){
+    private fun observeLiveData() {
         dailySeriesTrendViewModel.series.observe(viewLifecycleOwner, Observer { series ->
             series?.let {
                 binding.seriesRecyclerviewList.visibility = View.VISIBLE
                 seriesDailyTrendAdapter.updateSeriesList(series as ArrayList<Movie>)
+            }
+        })
+
+        dailySeriesTrendViewModel.seriesLoading.observe(
+            viewLifecycleOwner,
+            Observer { seriesLoading ->
+                seriesLoading?.let {
+                    if (it) {
+                        binding.seriesLoading.visibility = View.VISIBLE
+                        binding.seriesRecyclerviewList.visibility = View.GONE
+                        binding.seriesError.visibility = View.GONE
+                    } else {
+                        binding.seriesLoading.visibility = View.GONE
+                    }
+                }
+            })
+
+        dailySeriesTrendViewModel.seriesError.observe(viewLifecycleOwner, Observer { seriesError ->
+            seriesError?.let {
+                if (it) {
+                    binding.seriesError.visibility = View.VISIBLE
+                } else {
+                    binding.seriesError.visibility = View.GONE
+                }
             }
         })
     }

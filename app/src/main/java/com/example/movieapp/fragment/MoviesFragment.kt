@@ -103,7 +103,7 @@ class MoviesFragment : Fragment() {
         observeLiveData()
 
         // trailer işlemleri
-       /* trailerList.add("ROH4ercgqE0")
+        trailerList.add("ROH4ercgqE0")
         trailerList.add("ROH4ercgqE0")
         trailerList.add("ROH4ercgqE0")
         trailerList.add("ROH4ercgqE0")
@@ -112,7 +112,7 @@ class MoviesFragment : Fragment() {
             context,
             LinearLayoutManager.HORIZONTAL,
             false)
-        binding.recyclerViewTrailer.adapter = trailerAdapter*/
+        binding.recyclerViewTrailer.adapter = trailerAdapter
 
 
     }

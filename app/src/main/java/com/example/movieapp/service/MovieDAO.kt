@@ -3,7 +3,7 @@ package com.example.movieapp.service
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.movieapp.model.Movie
-
+/*
 interface MovieDAO {
 
     @Insert
@@ -18,4 +18,4 @@ interface MovieDAO {
     @Query("DELETE FROM movie")
     suspend fun deleteAllMovies()
 
-}
+}*/
